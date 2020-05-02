@@ -6584,7 +6584,7 @@ human-signals@^1.1.1:
 
 husky@^4.2.5:
   version "4.2.5"
-  resolved "https://registry.npm.taobao.org/husky/download/husky-4.2.5.tgz?cache=0&sync_timestamp=1586468409378&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhusky%2Fdownload%2Fhusky-4.2.5.tgz#2b4f7622673a71579f901d9885ed448394b5fa36"
+  resolved "https://registry.npm.taobao.org/husky/download/husky-4.2.5.tgz#2b4f7622673a71579f901d9885ed448394b5fa36"
   integrity sha1-K092Imc6cVefkB2Yhe1Eg5S1+jY=
   dependencies:
     chalk "^4.0.0"
@@ -8868,15 +8868,10 @@ mixin-object@^2.0.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.24.0:
+moment@^2.24.0, moment@^2.25.1:
   version "2.25.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.25.1.tgz#1cb546dca1eccdd607c9324747842200b683465d"
   integrity sha512-nRKMf9wDS4Fkyd0C9LXh2FFXinD+iwbJ5p/lh3CHitW9kZbRbJ8hCruiadiIXZVbeAqKZzqcTvHnK3mRhFjb6w==
-
-moment@^2.25.1:
-  version "2.25.1"
-  resolved "https://registry.npm.taobao.org/moment/download/moment-2.25.1.tgz#1cb546dca1eccdd607c9324747842200b683465d"
-  integrity sha1-HLVG3KHszdYHyTJHR4QiALaDRl0=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
