@@ -9,7 +9,10 @@
       "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@config": ["config.js"],
+      "@layouts/*": ["layouts/*"],
+      "@routes/*": ["routes/*"]
     }
   },
   "exclude": ["node_modules", "dist"],

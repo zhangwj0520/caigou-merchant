@@ -1,26 +1,26 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
-import reduxImg from '@assets/logo.svg';
-import { useStore, useDispatch } from '@hooks';
+import redux from '@assets/images/redux.svg';
+import { useStore, useActions } from '@hooks';
 import styles from './styles.scss';
-import { decrement, increment, incrementByAmount, incrementAsync } from './module';
+import { actions } from './module';
 
 function App() {
-  const { value: count } = useStore('counter');
+  const { value } = useStore('demo');
+  const { increment, decrement, incrementByAmount, incrementAsync } = useActions(actions);
 
-  const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <img src={reduxImg} className={styles.logo} alt="logo" />
+        <img src={redux} className={styles.logo} alt="logo" />
         <div className={styles.row}>
-          <button className={styles.button} aria-label="Increment value" onClick={() => dispatch(increment())}>
+          <button className={styles.button} aria-label="Increment value" onClick={() => increment()}>
             +
           </button>
-          <span className={styles.value}>{count}</span>
-          <button className={styles.button} aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+          <span className={styles.value}>{value}</span>
+          <button className={styles.button} aria-label="Decrement value" onClick={() => decrement()}>
             -
           </button>
         </div>
@@ -31,17 +31,15 @@ function App() {
             value={incrementAmount}
             onChange={(e) => setIncrementAmount(e.target.value)}
           />
-          <button className={styles.button} onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>
+          <button className={styles.button} onClick={() => incrementByAmount(Number(incrementAmount) || 0)}>
             Add Amount
           </button>
-          <button className={styles.asyncButton} onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
+          <button className={styles.asyncButton} onClick={() => incrementAsync(Number(incrementAmount) || 0)}>
             Add Async
           </button>
         </div>
         <p>
-          Edit
-          <code>src/App.tsx</code>
-          and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <span>
           <span>Learn </span>

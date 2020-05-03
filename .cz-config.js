@@ -26,8 +26,7 @@ module.exports = {
     },
     {
       value: 'chore',
-      name:
-        '🗯     chore:  没有对src或test模块改动. 一般是更新依赖或者构建产生的改变',
+      name: '🗯     chore:  没有对src或test模块改动. 一般是更新依赖或者构建产生的改变',
     },
     {
       value: 'style',
@@ -43,15 +42,18 @@ module.exports = {
     },
   ],
   scopes: [
-    'dependencies',
-    'components',
     'pages',
+    'components',
     'routes',
+    'dependencies',
     'assets',
     'utils',
+    'service',
     'layouts',
     'public',
+    'static',
     'config',
+    'rootPath',
   ],
   allowCustomScopes: true,
   skipQuestions: ['footer'],
