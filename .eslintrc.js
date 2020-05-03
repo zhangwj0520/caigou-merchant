@@ -46,11 +46,19 @@ module.exports = {
     'operator-linebreak': 'off',
     'no-use-before-define': 'off',
     'max-nested-callbacks': [2, 5],
+    indent: [
+      'error',
+      2,
+      {
+        ignoredNodes: ['TemplateLiteral'],
+      },
+    ],
     'default-case': 'off',
     'global-require': 'off',
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'dot-notation': 'off',
+    'template-curly-spacing': 'off',
     'max-len': [
       'error',
       {

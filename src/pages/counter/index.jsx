@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
-import reduxImg from '@assets/logo.svg';
+import reduxImg from '@assets/images/redux.svg';
 import { useStore, useDispatch } from '@hooks';
 import styles from './styles.scss';
 import { decrement, increment, incrementByAmount, incrementAsync } from './module';

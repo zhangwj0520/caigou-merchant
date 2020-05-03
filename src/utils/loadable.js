@@ -1,28 +1,20 @@
-// /* eslint-disable */
-// import { lazy } from 'react'
-// import { injectReducer } from '@store/index'
+import { lazy } from 'react';
+import { injectReducer } from '@store/index';
 
-// const modulesFiles = require.context('@pages', true, /module.js$/)
-// const paths = modulesFiles.keys();
+const modulesFiles = require.context('@pages', true, /module.js$/);
+const paths = modulesFiles.keys();
 
-// function capture(fn) {
-//   const promise = fn()
-//   return promise
-// }
+function loadable(str) {
+  return lazy(async () => {
+    const path = `./${str}/module.js`;
+    if (paths.includes(path)) {
+      import(`@pages/${str}/module.js`).then((mod) => {
+        const { reducer, name } = mod.default;
+        injectReducer(name, reducer);
+      });
+    }
+    return import(`@pages/${str}`);
+  });
+}
 
-// const moduleDefaultExport = (module) => module.default || module
-
-// function loadable(str) {
-//   return lazy(() => {
-//     const path = `./${str}/module.js`
-//     if (paths.includes(path)) {
-//       capture(() => import(`@pages/${str}/module.js`)).then((mod) => {
-//         const { reducer, name } = moduleDefaultExport(mod)
-//         injectReducer(name, reducer)
-//       })
-//     }
-//     return import(`@pages/${str}`)
-//   })
-// }
-
-// export default loadable
+export default loadable;

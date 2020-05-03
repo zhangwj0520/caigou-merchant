@@ -1,12 +1,11 @@
-const { getThemeVariables } = require('antd/dist/theme');
+// const { getThemeVariables } = require('antd/dist/theme');
 
-const theme = getThemeVariables({
-  // dark: true, // 开启暗色主题
-  // compact: true, // 开启紧凑主题
-});
+// const theme = getThemeVariables({
+//   // dark: true, // 开启暗色主题
+//   // compact: true, // 开启紧凑主题
+// });
 
 module.exports = {
-  ...theme,
   '@primary-color': '#1890ff', // 全局主色
   '@link-color': '#1890ff', // 链接色
   '@success-color': '#52c41a', // 成功色

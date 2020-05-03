@@ -1,11 +1,9 @@
 import { Button, Col } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import exceptionConstants from './constants';
+import typeMap from './constants';
 
 import styles from './Exception.scss';
-
-const { typeMap } = exceptionConstants;
 
 const Exception = ({ type = 404, infoText, actions, hideBack = false }) => {
   const { img, title, desc } = typeMap[type];
