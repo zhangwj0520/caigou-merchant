@@ -2,7 +2,7 @@ const { getThemeVariables } = require('antd/dist/theme');
 
 const theme = getThemeVariables({
   // dark: true, // 开启暗色主题
-  compact: true, // 开启紧凑主题
+  // compact: true, // 开启紧凑主题
 });
 
 module.exports = {

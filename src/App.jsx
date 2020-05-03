@@ -6,13 +6,13 @@ import Login from '@pages/login';
 import App from '@layouts/index';
 
 const Root = () => {
-  const { isLogin } = useStore('basic');
+  const { token } = useStore('basic');
 
   return (
     <Router>
       <Switch>
         <Route component={Login} exact path="/login" />
-        <Route render={() => (isLogin ? <App /> : <Redirect to="/login" />)} />
+        <Route render={() => (token ? <App /> : <Redirect to="/login" />)} />
       </Switch>
     </Router>
   );

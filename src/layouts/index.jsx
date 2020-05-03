@@ -6,15 +6,14 @@ import { Link } from 'react-router-dom';
 import WaterMark from '@components/WaterMark';
 import logo from '@assets/images/logo.png';
 import { useStore, useDispatch } from '@hooks';
-import { onCollapse } from '@store/modules/basic.module';
+import { onCollapse, getUserInfo } from '@store/modules/basic.module';
 import menuData from '@routes/route.config';
 import { iconfontUrl } from '../config';
 
 import SettingDrawer from './SettingDrawer';
-
 import MainContent from './MainContent';
 import Footer from './Footer';
-import RightContent from './Header/RightContent';
+import RightContent from './RightContent';
 
 function Index() {
   const { pathname } = useLocation();
@@ -26,11 +25,7 @@ function Index() {
   }, [pathname]);
 
   useEffect(() => {
-    // const getInitData = async () => {
-    //   const data = await getUserInfo();
-    //   dispatch(setUserInfo(data));
-    // };
-    // getInitData();
+    dispatch(getUserInfo());
   }, [dispatch]);
 
   return (

@@ -5,18 +5,15 @@ import { useHistory } from 'react-router';
 import { useStore, useDispatch } from '@hooks/useStore';
 import HeaderDropdown from '@components/HeaderDropdown';
 import { logout } from '@store/modules/basic.module';
-// import HeaderSearch from '../HeaderSearch'
-// import SelectLang from '../SelectLang'
-import styles from './RightContent.less';
+import styles from './index.less';
 
 const GlobalHeaderRight = () => {
   const {
     theme,
     layout,
-    userInfo: { name, avatar },
+    userInfo: { nickName, avatarUrl },
   } = useStore('basic');
   let className = styles.right;
-
   if (theme === 'dark' && layout === 'topmenu') {
     className = `${styles.right}  ${styles.dark}`;
   }
@@ -56,11 +53,11 @@ const GlobalHeaderRight = () => {
 
   return (
     <div className={className}>
-      {name ? (
+      {nickName ? (
         <HeaderDropdown overlay={menuHeaderDropdown}>
           <span className={`${styles.action} ${styles.account}`}>
-            <Avatar size="small" className={styles.avatar} src={avatar} alt="avatar" />
-            <span className={styles.name}>{name}</span>
+            <Avatar size="small" className={styles.avatar} src={avatarUrl} alt="avatar" />
+            <span className={styles.name}>{nickName}</span>
           </span>
         </HeaderDropdown>
       ) : (

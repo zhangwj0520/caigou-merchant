@@ -6,20 +6,17 @@ const setting = {
   theme: storage.get('theme') || 'dark',
   collapsed: storage.get('collapsed'),
   title: 'React Demo',
-  isLogin: storage.get('isLogin'),
   layout: storage.get('layout') || 'sidemenu',
   fixedHeader: storage.get('fixedHeader') || false,
   fixSiderbar: storage.get('fixSiderbar') || true,
+  token: storage.get('token'),
 };
 
-const userInfo = {
-  userName: 'userName',
-  name: 'name',
-  avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-};
+const userInfo = {};
 
 const initialState = {
   ...setting,
+
   userInfo,
 };
 
@@ -31,10 +28,6 @@ export const slice = createSlice({
       Object.entries(payload).forEach(([key, val]) => {
         state[key] = val;
       });
-    },
-    setLogin: (state) => {
-      storage.set('isLogin', true);
-      state.isLogin = true;
     },
     onChangeTheme: (state, { payload }) => {
       storage.set('theme', payload);
@@ -68,7 +61,6 @@ export const {
   name,
   actions: {
     setBasicStore,
-    setLogin,
     onCollapse,
     logout,
     onChangeTheme,
@@ -80,10 +72,19 @@ export const {
 
 export const getCodeApi = (params) => get('/crm/getcode', params);
 export const loginApi = (params) => post('/crm/login', params);
-export const login = (params) => (dispatch) => {
-  const res = loginApi(params);
+export const getUserInfoApi = () => get('/crm/getuserinfo');
+
+export const login = (params) => async (dispatch) => {
+  const res = await loginApi(params);
   if (res) {
-    dispatch(setLogin());
+    dispatch(setBasicStore({ token: res }));
+    storage.set('token', res);
+  }
+};
+export const getUserInfo = () => async (dispatch) => {
+  const data = await getUserInfoApi();
+  if (data) {
+    dispatch(setBasicStore({ userInfo: data.userInfo }));
   }
 };
 

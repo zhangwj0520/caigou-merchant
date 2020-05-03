@@ -20,15 +20,15 @@ const rules = {
 function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { isLogin } = useStore('basic');
+  const { token } = useStore('basic');
   const [state, setState] = useSetState({ phone: '', code: '' });
   const { phone, code } = state;
 
   useEffect(() => {
-    if (isLogin) {
+    if (token) {
       history.push('/');
     }
-  }, [isLogin, history]);
+  }, [token, history]);
 
   // 这个函数只在初始渲染时执行一次，后续更新状态重新渲染组件时，该函数就不会再被调用
   function getInitState() {

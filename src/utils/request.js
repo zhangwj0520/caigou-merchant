@@ -1,25 +1,8 @@
 import { message } from 'antd';
 import axios from 'axios';
-// import { USER_NOT_LOGIN } from '@constants/base'
-import { host } from '../config';
+import storage from '@utils/localStorage';
+// import store from '@store/index';
 
-const transAxiosResponse = ({ data: axiosData }) => {
-  if (axiosData.errno === 0) {
-    if (axiosData.msg) {
-      message.success(axiosData.msg);
-    }
-  } else {
-    message.error(axiosData.msg);
-  }
-  return Promise.resolve(axiosData.data);
-
-  // 未登录
-  // if (axiosData.errno === USER_NOT_LOGIN) {
-  //   window.location.replace((axiosData.data as any).url)
-  // }
-
-  // return Promise.reject(new Error(axiosData.errmsg))
-};
 // 过滤所有空字符串参数
 const falsyFilter = (params) => {
   const filtedParams = {};
@@ -31,23 +14,45 @@ const falsyFilter = (params) => {
   return filtedParams;
 };
 
-const instance = axios.create({
-  baseURL: `${host}/`,
-  timeout: 10000,
-});
-instance.interceptors.request.use((conf) => {
-  let { params } = conf;
-  if (conf.method === 'get' && params) {
-    // 过滤所有空字符串参数
-    params = falsyFilter(conf.params);
+const transAxiosResponse = ({ data: axiosData }) => {
+  if (axiosData.errno === 0) {
+    if (axiosData.msg) {
+      message.success(axiosData.msg);
+    }
+  } else if (axiosData.errno === 10001) {
+    // 未登录
+    storage.clear();
+    window.location.replace('/login');
+  } else {
+    message.error(axiosData.msg);
   }
-  return {
-    ...conf,
-    params,
-  };
+  return Promise.resolve(axiosData.data);
+};
+
+// create an axios instance
+const service = axios.create({
+  baseURL: process.env.REACT_APP_BASE_API, // url = base url + request url
+  // withCredentials: true, // send cookies when cross-domain requests
+  timeout: 5000, // request timeout
 });
 
-instance.interceptors.response.use(
+// request interceptor
+service.interceptors.request.use((config) => {
+  // do something before request is sent
+  const token = storage.get('token');
+  if (token) {
+    config.headers['token'] = token;
+  }
+  let { params } = config;
+  if (config.method === 'get' && params) {
+    // 过滤所有空字符串参数
+    params = falsyFilter(config.params);
+  }
+  return { ...config, params };
+});
+
+// response interceptor
+service.interceptors.response.use(
   (response) => {
     if (response.status >= 200 && response.status < 300) {
       return response;
@@ -61,6 +66,6 @@ instance.interceptors.response.use(
   },
 );
 
-export const get = (url, params) => instance.get(url, { params }).then(transAxiosResponse);
+export const get = (url, params) => service.get(url, { params }).then(transAxiosResponse);
 
-export const post = (url, params) => instance.post(url, params).then(transAxiosResponse);
+export const post = (url, params) => service.post(url, params).then(transAxiosResponse);
