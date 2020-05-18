@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
-import { useStore, useActions, useModal } from '@hooks';
+import { useStore, useModal, useDispatch } from '@hooks';
 import UploadPurchase from './components/uploadPurchase';
 
 import styles from './styles.scss';
-import { actions } from './module';
+import { getCompany } from './module';
 
 export default () => {
-  // const { value } = useStore('purchase');
-  // const { increment, decrement, incrementByAmount, incrementAsync } = useActions(actions);
-
-  // const [incrementAmount, setIncrementAmount] = useState('2');
+  const dispatch = useDispatch();
+  const { companyList } = useStore('purchase');
+  useEffect(() => {
+    dispatch(getCompany());
+  }, [dispatch]);
 
   const { visible, open, close } = useModal(true);
 
@@ -21,7 +22,7 @@ export default () => {
         <CloudUploadOutlined /> 发布采购计划
       </Button>
 
-      <UploadPurchase visible={visible} />
+      <UploadPurchase visible={visible} companyList={companyList} close={close} />
     </div>
   );
 };

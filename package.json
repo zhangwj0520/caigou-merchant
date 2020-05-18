@@ -29,7 +29,7 @@
     "stylelint-config-recess-order": "^2.0.4",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
-    "windego-react-scripts": "1.0.42",
+    "windego-react-scripts": "^1.0.43",
     "xlsx": "^0.16.1"
   },
   "scripts": {
