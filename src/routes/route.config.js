@@ -2,6 +2,7 @@ import loadable from '@utils/loadable';
 
 import demoRoutes from '@routes/demos.route';
 import commonRoutes from '@routes/common.roue';
+import companyRoutes from '@routes/company.route';
 // import AUTH_MAP from '@constants/auth';
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
     component: loadable('welcome'),
     // component: lazy(() => import(/* webpackChunkName: "dashboard" */ '@pages/welcome')),
   },
+  ...companyRoutes,
   {
     path: '/business',
     name: '组件',

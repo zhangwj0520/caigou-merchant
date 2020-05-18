@@ -76,6 +76,7 @@ export const getUserInfoApi = () => get('/crm/getuserinfo');
 
 export const login = (params) => async (dispatch) => {
   const res = await loginApi(params);
+  // console.log(res);
   if (res) {
     dispatch(setBasicStore({ token: res }));
     storage.set('token', res);

@@ -26,7 +26,7 @@ const transAxiosResponse = ({ data: axiosData }) => {
   } else {
     message.error(axiosData.msg);
   }
-  return Promise.resolve(axiosData.data);
+  return Promise.resolve(axiosData.data || false);
 };
 
 // create an axios instance

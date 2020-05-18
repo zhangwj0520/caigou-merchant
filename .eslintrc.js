@@ -41,10 +41,11 @@ module.exports = {
   plugins: ['react', 'react-hooks'],
   rules: {
     // basic & style
-    'no-undef': 'warn',
+    // 'no-undef': 'warn',
     'object-curly-newline': 'off',
     'operator-linebreak': 'off',
     'no-use-before-define': 'off',
+    'no-unused-vars': 'warn',
     'max-nested-callbacks': [2, 5],
     indent: [
       'error',
