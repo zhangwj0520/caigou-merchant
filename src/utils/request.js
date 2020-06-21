@@ -2,6 +2,7 @@ import { message } from 'antd';
 import axios from 'axios';
 import storage from '@utils/localStorage';
 // import store from '@store/index';
+import { host } from '../config';
 
 // 过滤所有空字符串参数
 const falsyFilter = (params) => {
@@ -31,7 +32,8 @@ const transAxiosResponse = ({ data: axiosData }) => {
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.REACT_APP_BASE_API, // url = base url + request url
+  // baseURL: process.env.REACT_APP_BASE_API, // url = base url + request url
+  baseURL: host, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
 });
