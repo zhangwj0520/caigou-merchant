@@ -30,7 +30,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "windego-react-scripts": "^1.0.44",
-    "xlsx": "^0.16.1"
+    "xlsx": "^0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
